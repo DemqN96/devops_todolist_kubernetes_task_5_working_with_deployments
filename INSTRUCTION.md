@@ -7,8 +7,8 @@ Deployment використовує стратегію **RollingUpdate**, щоб
 
 ## 2. Ресурси
 Контейнер має:
-- `requests`: 128Mi, 200m — мінімальні ресурси для стабільного запуску Django у стані очікування.
-- `limits`: 256Mi, 400m — обмеження при навантаженні, щоб уникнути OOM Killer та перевантаження CPU.
+- `requests`: 64Mi, 250m — мінімальні ресурси для стабільного запуску Django у стані очікування.
+- `limits`: 128Mi, 500m — обмеження при навантаженні, щоб уникнути OOM Killer та перевантаження CPU.
 
 ## 3. Автоматичне масштабування (HPA)
 HPA реагує на 70% CPU і 75% пам’яті:
@@ -19,4 +19,5 @@ HPA реагує на 70% CPU і 75% пам’яті:
 ```bash
 kubectl create ns mateapp
 kubectl apply -f deployment.yml
+kubectl apply -f nodeport.yml
 kubectl apply -f hpa.yml
